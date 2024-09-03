@@ -1,0 +1,45 @@
+{
+  "DB": {
+    "ConnectionString": "host=8.8.8.8 port=5432 user=user dbname=market_db password=password sslmode=disable",
+      "Name": "market_db",
+    "LogMode": true
+  },
+  "StopTimeoutMS": 5000,
+  "Logger": {
+    "Component": "golang-hex-layout",
+    "MinLevel": "DEBUG",
+    "Writer": {
+      "Brokers": [
+        "8.8.8.8:9092"
+      ],
+      "Topic": "topic"
+    }
+  },
+  "WebServer": {
+    "Port": 8080,
+    "GIN": {
+      "ReleaseMode": false,
+      "UseLogger": true,
+      "UseRecovery": false
+    }
+  },
+  "MarketUrls": {
+    "BaseAddress": {
+      "Url": "https://sabyradinov/market",
+      "HttpTimeout": 50
+    },
+    "Pay": "/v1/payment"
+  },
+  "ShipmentUrls": {
+    "BaseAddress": {
+      "Url": "https://sabyradinov/shipment",
+      "HttpTimeout": 50
+    },
+    "Send2Client": "/v1/send2client"
+  },
+  "SwaggerUI": {
+    "PageTitle": "golang-hex-layout",
+    "Host": "sabyradinov.dev",
+    "Description": "Swagger description"
+  }
+}

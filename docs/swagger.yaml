@@ -1,0 +1,169 @@
+basePath: /github.com/Sabyradinov/golang-hex-layout/api/v1
+definitions:
+  common.BaseResponse:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+  model.ProductRequest:
+    properties:
+      amount:
+        type: number
+      categoryId:
+        type: integer
+      id:
+        type: integer
+      isEnabled:
+        type: boolean
+      name:
+        type: string
+      subCategoryId:
+        type: integer
+    type: object
+  model.ShipmentRequest:
+    properties:
+      address:
+        type: string
+      amount:
+        type: number
+      commission:
+        type: number
+      commissionCurrency:
+        type: string
+      currency:
+        type: string
+      from:
+        type: string
+      id:
+        type: integer
+      productId:
+        type: integer
+      to:
+        type: string
+    type: object
+info:
+  contact: {}
+  version: "1.0"
+paths:
+  /market/:id:
+    get:
+      consumes:
+      - application/json
+      description: method to get product by id
+      parameters:
+      - description: product id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: response body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "400":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "404":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+      summary: method to get product by id
+      tags:
+      - Market
+  /market/pay:
+    post:
+      consumes:
+      - application/json
+      description: method to buy product
+      parameters:
+      - description: request body
+        in: body
+        name: comparisons
+        schema:
+          $ref: '#/definitions/model.ProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: response body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "400":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "404":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+      summary: method to buy product
+      tags:
+      - Market
+  /shipment/:id:
+    get:
+      consumes:
+      - application/json
+      description: method to get shipment by id
+      parameters:
+      - description: shipment id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: response body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "400":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "404":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+      summary: method to get shipment by id
+      tags:
+      - Shipment
+  /shipment/delivery:
+    post:
+      consumes:
+      - application/json
+      description: method to start delivery process
+      parameters:
+      - description: request body
+        in: body
+        name: comparisons
+        schema:
+          $ref: '#/definitions/model.ShipmentRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: response body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "400":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+        "404":
+          description: error body
+          schema:
+            $ref: '#/definitions/common.BaseResponse'
+      summary: method to start delivery process
+      tags:
+      - Shipment
+schemes:
+- https
+swagger: "2.0"
